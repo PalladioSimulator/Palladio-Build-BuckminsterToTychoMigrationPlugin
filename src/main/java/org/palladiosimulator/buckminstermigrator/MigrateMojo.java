@@ -74,7 +74,7 @@ public class MigrateMojo extends AbstractMojo {
 
 	private void doExecution(UpdateSiteCategory foundCategory) throws IOException {
 		
-		Collection<File> containedDirectories = new ArrayList<>(Arrays.asList(baseDirectory.listFiles(File::isDirectory)));
+		Collection<File> containedDirectories = new ArrayList<>(Arrays.asList(baseDirectory.listFiles(f -> f.isDirectory() && !".git".equals(f.getName()))));
 		
 		Collection<File> featureDirectories = containedDirectories.stream().filter(f -> f.getName().contains("feature")).collect(Collectors.toList());
 		Collection<File> testDirectories = containedDirectories.stream().filter(f -> f.getName().contains("tests")).collect(Collectors.toList());
