@@ -122,6 +122,9 @@ public class MigrateMojo extends AbstractMojo {
 		File targetPlatformFolder = createDirectory(relengFolder, targetGroupId + ".targetplatform");
 		new EmptyProjectDefinitionGenerator(targetPlatformFolder.getName()).generateInto(new File(targetPlatformFolder, ".project"));
 		new TargetPlatformGenerator(targetGroupId).generateInto(new File(targetPlatformFolder, "tp.target"));
+		
+		// releng POM
+		new FolderPOM(FolderPomName.RELENG, targetGroupId, targetVersion, Arrays.asList(updateSiteFolder.getName())).generateInto(new File(relengFolder, "pom.xml"));
 	}
 	
 	private void createSubFolder(FolderPomName folderName, Collection<File> content) throws IOException {
