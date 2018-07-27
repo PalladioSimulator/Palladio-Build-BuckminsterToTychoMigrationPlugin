@@ -1,6 +1,11 @@
 # Palladio-Build-BuckminsterToTychoMigrationPlugin
 
-Just copy the following POM file into your buckminster project and issue the command `mvn package`. The target folder will contain the migrated project. Please note, that you still have to define the target platform to get a properly working build.
+Just copy the following POM file after adjusting it into your buckminster project and issue the command `mvn package`. The target folder will contain the migrated project. Please note, that you still have to define the target platform to get a properly working build.
+
+Please do the following adjustements:
+* targetGroupId: The group id to be used, which will also be part of the name of the update site
+* updatesiteCategory: The category to place the features in (support, qual, core, addons)
+
 
 ```
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -17,7 +22,6 @@ Just copy the following POM file into your buckminster project and issue the com
 			<plugin>
 				<groupId>org.palladiosimulator</groupId>
 				<artifactId>buckminster-tycho-migrator</artifactId>
-				<version>0.1.0</version>
 				<executions>
 					<execution>
 						<id>migration</id>
