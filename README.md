@@ -1,6 +1,6 @@
 # Palladio-Build-BuckminsterToTychoMigrationPlugin
 
-Just copy the following POM file after adjusting it into your buckminster project and issue the command `mvn package`. The target folder will contain the migrated project. Please note, that you still have to define the target platform to get a properly working build.
+Just copy the following POM file into the root of your project (i.e., the folder that contains a folder for the buckminster Eclipse project), adjust it as described below, and issue the command `mvn package`. The target folder will contain the migrated project. Please note, that you still have to define the target platform to get a properly working build.
 
 Please do the following adjustements:
 * targetGroupId: The group id to be used, which will also be part of the name of the update site
