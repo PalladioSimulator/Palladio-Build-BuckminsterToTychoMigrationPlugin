@@ -98,7 +98,7 @@ public class MigrateMojo extends AbstractMojo {
 		
 		Collection<File> containedDirectories = new ArrayList<>(Arrays.asList(baseDirectory.listFiles(f -> f.isDirectory() && !".git".equals(f.getName()))));
 		
-		Collection<File> featureDirectories = containedDirectories.stream().filter(f -> f.getName().contains("feature")).collect(Collectors.toList());
+		Collection<File> featureDirectories = containedDirectories.stream().filter(MigrateMojo::directoryContainsFeature).collect(Collectors.toList());
 		Collection<File> testDirectories = containedDirectories.stream().filter(f -> f.getName().contains("tests")).collect(Collectors.toList());
 		File buckminsterDirectory = containedDirectories.stream().filter(f -> f.getName().contains("buckminster")).findFirst().orElseThrow(() -> new IOException("Failed to find buckminster directory"));
 		
@@ -250,5 +250,10 @@ public class MigrateMojo extends AbstractMojo {
 		matcher.find();
 		String tychoVersion = matcher.group(1);
 		return tychoVersion;
+	}
+	
+	
+	private static boolean directoryContainsFeature(File f) {
+		return f.isDirectory() && f.list( (dir, s) -> "feature.xml".equalsIgnoreCase(s) && !dir.getName().contains("buckminster")).length > 0;
 	}
 }
